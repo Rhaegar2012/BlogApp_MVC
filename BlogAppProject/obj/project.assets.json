@@ -716,6 +716,33 @@
           "lib/netstandard1.3/Newtonsoft.Json.dll": {}
         }
       },
+      "Npgsql/5.0.7": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "4.6.0"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Npgsql.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Npgsql.dll": {}
+        }
+      },
+      "Npgsql.EntityFrameworkCore.PostgreSQL/5.0.7": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "5.0.7",
+          "Microsoft.EntityFrameworkCore.Abstractions": "5.0.7",
+          "Microsoft.EntityFrameworkCore.Relational": "5.0.7",
+          "Npgsql": "5.0.7"
+        },
+        "compile": {
+          "lib/netstandard2.1/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {}
+        }
+      },
       "runtime.native.System/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -1362,7 +1389,7 @@
           }
         }
       },
-      "System.Runtime.CompilerServices.Unsafe/4.5.2": {
+      "System.Runtime.CompilerServices.Unsafe/4.6.0": {
         "type": "package",
         "compile": {
           "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
@@ -2817,6 +2844,39 @@
         "newtonsoft.json.10.0.1.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "tools/install.ps1"
+      ]
+    },
+    "Npgsql/5.0.7": {
+      "sha512": "EQWwxb2lN9w78YG4f6Fxhw5lFEx4LuaNGasXzw86kTOJxiPsUORSh/BTencNZJO4uVqGZx3EO9Z8JXTAvRjgeg==",
+      "type": "package",
+      "path": "npgsql/5.0.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/Npgsql.dll",
+        "lib/net5.0/Npgsql.xml",
+        "lib/netcoreapp3.1/Npgsql.dll",
+        "lib/netcoreapp3.1/Npgsql.xml",
+        "lib/netstandard2.0/Npgsql.dll",
+        "lib/netstandard2.0/Npgsql.xml",
+        "lib/netstandard2.1/Npgsql.dll",
+        "lib/netstandard2.1/Npgsql.xml",
+        "npgsql.5.0.7.nupkg.sha512",
+        "npgsql.nuspec",
+        "postgresql.png"
+      ]
+    },
+    "Npgsql.EntityFrameworkCore.PostgreSQL/5.0.7": {
+      "sha512": "RxFmJ0I4uppEAyR7b+xCfj4ZilUoGkKD4otUjiu+O3hv+vG6LUFOfJcB1ms5kOWTIvLEQHow9e+0zH7JWWV0ig==",
+      "type": "package",
+      "path": "npgsql.entityframeworkcore.postgresql/5.0.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.1/Npgsql.EntityFrameworkCore.PostgreSQL.dll",
+        "npgsql.entityframeworkcore.postgresql.5.0.7.nupkg.sha512",
+        "npgsql.entityframeworkcore.postgresql.nuspec",
+        "postgresql.png"
       ]
     },
     "runtime.native.System/4.3.0": {
@@ -4957,10 +5017,10 @@
         "version.txt"
       ]
     },
-    "System.Runtime.CompilerServices.Unsafe/4.5.2": {
-      "sha512": "wprSFgext8cwqymChhrBLu62LMg/1u92bU+VOwyfBimSPVFXtsNqEWC92Pf9ofzJFlk4IHmJA75EDJn1b2goAQ==",
+    "System.Runtime.CompilerServices.Unsafe/4.6.0": {
+      "sha512": "HxozeSlipUK7dAroTYwIcGwKDeOVpQnJlpVaOkBz7CM4TsE5b/tKlQBZecTjh6FzcSbxndYaxxpsBMz+wMJeyw==",
       "type": "package",
-      "path": "system.runtime.compilerservices.unsafe/4.5.2",
+      "path": "system.runtime.compilerservices.unsafe/4.6.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4976,7 +5036,7 @@
         "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
         "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
         "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512",
         "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -6453,7 +6513,9 @@
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 3.1.8",
       "Microsoft.EntityFrameworkCore >= 5.0.9",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.9",
-      "Microsoft.EntityFrameworkCore.Tools >= 5.0.9"
+      "Microsoft.EntityFrameworkCore.Tools >= 5.0.9",
+      "Npgsql >= 5.0.7",
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 5.0.7"
     ]
   },
   "packageFolders": {
@@ -6519,6 +6581,14 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[5.0.9, )"
+          },
+          "Npgsql": {
+            "target": "Package",
+            "version": "[5.0.7, )"
+          },
+          "Npgsql.EntityFrameworkCore.PostgreSQL": {
+            "target": "Package",
+            "version": "[5.0.7, )"
           }
         },
         "imports": [

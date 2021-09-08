@@ -13,7 +13,7 @@ namespace BlogAppProject.Models
         public int Id { get; set; }
         //Foreing Keys
         public int PostId { get; set; }
-        public string AuthorId { get; set; }
+        public string BlogUserId { get; set; }
         public string ModeratorId { get; set; }
         //Content properties
         [Required]
@@ -33,7 +33,7 @@ namespace BlogAppProject.Models
         //Navigational Properties
         //IdentityUser is a generic user , the type is called from ASP.NET core
         //Parent properties
-        public virtual BlogUser Author { get; set; }
+        public virtual BlogUser BlogUser { get; set; }
         public virtual BlogUser Moderator { get; set; }
         public virtual Post Post { get; set; }
 

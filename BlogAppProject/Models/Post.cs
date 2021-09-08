@@ -16,7 +16,7 @@ namespace BlogAppProject.Models
         //Foreign Key
         [Display(Name="Blog Name")]
         public int BlogId { get; set; }
-        public int AuthorId { get; set; }
+        public int BlogUserId { get; set; }
         [Required]
         [StringLength(75,ErrorMessage ="The {0} must be at least {2} and at most {1} characters long. ", MinimumLength = 2)]
         public string Title { get; set; }
@@ -41,7 +41,7 @@ namespace BlogAppProject.Models
         //Navigation properties
         //Parent relationship
         public virtual Blog Blog { get; set; }
-        public virtual BlogUser Author { get; set; }
+        public virtual BlogUser BlogUser { get; set; }
         //Child relationship
         public virtual ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
         public virtual ICollection<Tag> Tags { get; set; } = new HashSet<Tag>();

@@ -11,9 +11,10 @@ namespace BlogAppProject.Models
 {
     public class Blog
     {
+        //Primary key 
         public int Id { get; set; }
         //Foreign Key
-        public string AuthorId { get; set; }
+        public string BlogUserId { get; set; }
         [Required]
         [StringLength(100,ErrorMessage ="The {0} must be at least {2} and at most {1} characters.",MinimumLength =2)]
         public string Name { get; set; }
@@ -37,7 +38,7 @@ namespace BlogAppProject.Models
         public IFormFile Image { get; set; }
         //Navigation property 
         //Parent property
-        public virtual BlogUser Author { get; set; }
+        public virtual BlogUser BlogUser { get; set; }
         //Children properties
         public virtual ICollection<Post> Posts { get; set; } = new HashSet<Post>();
 

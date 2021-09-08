@@ -28,8 +28,8 @@ namespace BlogAppProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(
-                Configuration.GetConnectionString("DefaultConnection")));
+            options.UseNpgsql(
+                 Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<BlogUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
