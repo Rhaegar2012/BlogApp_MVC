@@ -31,6 +31,8 @@ namespace BlogAppProject
             options.UseNpgsql(
                  Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<BlogUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddDefaultUI()
+                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
