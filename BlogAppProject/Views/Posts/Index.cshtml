@@ -13,47 +13,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.BlogUserId)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Abstract)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Created)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Updated)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ReadyStatus)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Slug)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageData)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ContentType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Blog)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BlogUserId)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -61,28 +36,10 @@
                 @Html.DisplayFor(modelItem => item.Abstract)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Created)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Updated)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.ReadyStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Slug)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageData)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContentType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Blog.Description)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
