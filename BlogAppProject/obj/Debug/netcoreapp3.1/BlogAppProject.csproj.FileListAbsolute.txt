@@ -448,7 +448,6 @@ C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Views\Blogs\Index.cshtml.g.cs
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Views\Comments\Create.cshtml.g.cs
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Views\Comments\Delete.cshtml.g.cs
-C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Views\Comments\Details.cshtml.g.cs
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Views\Comments\Edit.cshtml.g.cs
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Views\Comments\Index.cshtml.g.cs
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Views\Posts\Create.cshtml.g.cs
@@ -457,11 +456,6 @@ C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Views\Posts\Edit.cshtml.g.cs
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Views\Posts\Index.cshtml.g.cs
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
-C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Views\Tags\Create.cshtml.g.cs
-C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Views\Tags\Delete.cshtml.g.cs
-C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Views\Tags\Details.cshtml.g.cs
-C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Views\Tags\Edit.cshtml.g.cs
-C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Views\Tags\Index.cshtml.g.cs
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\bin\Debug\netcoreapp3.1\BlogAppProject.StaticWebAssets.xml
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.Views.V3.dll
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
