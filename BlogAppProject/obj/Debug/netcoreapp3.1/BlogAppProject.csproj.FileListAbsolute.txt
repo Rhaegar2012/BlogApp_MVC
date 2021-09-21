@@ -503,3 +503,5 @@ C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Error.cshtml.g.cs
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Views\Home\About.cshtml.g.cs
+C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Views\Home\Contact.cshtml.g.cs
