@@ -76,6 +76,10 @@
               "target": "Package",
               "version": "[3.1.5, )"
             },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[2.15.1, )"
+            },
             "Npgsql": {
               "target": "Package",
               "version": "[5.0.7, )"

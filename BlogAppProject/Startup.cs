@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using BlogAppProject.Models;
 using Microsoft.AspNetCore.Identity;
 using BlogAppProject.Services;
+using BlogAppProject.ViewModels;
 
 namespace BlogAppProject
 {
@@ -39,6 +40,9 @@ namespace BlogAppProject
             services.AddRazorPages();
             //Register custom DataService Class
             services.AddScoped<DataService>();
+            //Registered a preconfigured instance of the MailSettings class
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+            services.AddScoped<IBlogEmailSender, EmailServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

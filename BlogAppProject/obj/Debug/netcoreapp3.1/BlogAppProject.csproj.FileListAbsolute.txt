@@ -462,9 +462,6 @@ C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\bin\Debug\netcoreapp3.1
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Embedded.dll
-C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\BlogAppProject.csproj.CoreCompileInputs.cache
-C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\BlogAppProject.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\BlogAppProject.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\AccessDenied.cshtml.g.cs
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\ConfirmEmail.cshtml.g.cs
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml.g.cs
