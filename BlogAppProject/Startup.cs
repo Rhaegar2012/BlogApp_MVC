@@ -42,7 +42,7 @@ namespace BlogAppProject
             services.AddScoped<DataService>();
             //Registered a preconfigured instance of the MailSettings class
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
-            services.AddScoped<IBlogEmailSender, EmailServices>();
+            services.AddScoped<IBlogEmailSender, EmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlogAppProject.ViewModels;
+using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
 
@@ -24,7 +25,7 @@ namespace BlogAppProject.Services
             throw new NotImplementedException();
         }
 
-        public Task SendEmailAsync(string emailTo, string subject, string htmlMessage)
+        public async Task SendEmailAsync(string emailTo, string subject, string htmlMessage)
         {
             //Utilized MimeKit NuGet package
             var email = new MimeMessage();
@@ -37,6 +38,11 @@ namespace BlogAppProject.Services
             email.Body = builder.ToMessageBody();
 
             using var smtp = new SmtpClient();
+            smtp.Connect(_mailSettings.Host,_mailSettings.Port,
+                MailKit.Security.SecureSocketOptions.StartTls);
+            smtp.Authenticate(_mailSettings.Mail, _mailSettings.Password);
+            await smtp.SendAsync(email);
+            smtp.Disconnect(true);
         }
     }
 }

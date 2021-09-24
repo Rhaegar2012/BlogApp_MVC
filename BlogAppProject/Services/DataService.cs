@@ -63,7 +63,7 @@ namespace BlogAppProject.Services
             var adminUser = new BlogUser()
             {
                 Email = "josebsg75@hotmail.com",
-                UserName = "JoseT",
+                UserName = "josebsg75@hotmail.com",
                 FirstName = "Jose",
                 LastName = "Tellez",
                 PhoneNumber = "(604) 319-2926",
