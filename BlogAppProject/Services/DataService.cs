@@ -62,8 +62,8 @@ namespace BlogAppProject.Services
             //Step 1: Local variable for admin user, creates a new instance of Blog User
             var adminUser = new BlogUser()
             {
-                Email = "josebsg75@hotmail.com",
-                UserName = "josebsg75@hotmail.com",
+                Email = "josebsg75@gmail.com",
+                UserName = "josebsg75@gmail.com",
                 FirstName = "Jose",
                 LastName = "Tellez",
                 PhoneNumber = "(604) 319-2926",
