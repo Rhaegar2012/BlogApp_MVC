@@ -39,7 +39,9 @@ namespace BlogAppProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Contact(ContactMe model)
         {
-            throw new NotImplementedException();
+            model.Message = $"{model.Message}<hr/>Phone:{model.Phone}";
+            await _emailSender.SendContactEmailAsync(model.Email, model.Name, model.Subject, model.Message);
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
