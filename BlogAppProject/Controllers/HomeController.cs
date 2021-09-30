@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using BlogAppProject.Models;
 using BlogAppProject.ViewModels;
 using BlogAppProject.Services;
+using BlogAppProject.Data;
 
 namespace BlogAppProject.Controllers
 {
@@ -15,9 +16,11 @@ namespace BlogAppProject.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IBlogEmailSender _emailSender;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger,IBlogEmailSender emailSender)
+        public HomeController(ILogger<HomeController> logger,IBlogEmailSender emailSender,ApplicationDbContext context)
         {
+            _context = context;
             _logger = logger;
             _emailSender = emailSender;
         }

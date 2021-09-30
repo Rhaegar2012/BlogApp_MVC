@@ -7,12 +7,17 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BlogAppProject.Data;
 using BlogAppProject.Models;
+using BlogAppProject.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlogAppProject.Controllers
 {
     public class BlogsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IImageService _imageService;
+        private readonly UserManager<BlogUser> _userManager;
 
         public BlogsController(ApplicationDbContext context)
         {
@@ -46,6 +51,7 @@ namespace BlogAppProject.Controllers
         }
 
         // GET: Blogs/Create
+        [Authorize]
         public IActionResult Create()
         {
      
@@ -61,6 +67,11 @@ namespace BlogAppProject.Controllers
         {
             if (ModelState.IsValid)
             {
+                blog.Created = DateTime.Now;
+                blog.BlogUserId = _userManager.GetUserId(User);
+                blog.ImageData = await _imageService.EncodeImageAsync(blog.Image);
+                blog.ContentType = _imageService.ContentType(blog.Image);
+                _context.Add(blog);
                 _context.Add(blog);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
