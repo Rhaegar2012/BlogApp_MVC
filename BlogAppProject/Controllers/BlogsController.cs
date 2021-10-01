@@ -63,10 +63,14 @@ namespace BlogAppProject.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Description,Image")] Blog blog)
+        public async Task<IActionResult> Create([Bind("Name,Description,Image")] Blog blog, string returnUrl)
         {
             if (ModelState.IsValid)
             {
+                if (!string.IsNullOrEmpty(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
                 blog.Created = DateTime.Now;
                 blog.BlogUserId = _userManager.GetUserId(User);
                 blog.ImageData = await _imageService.EncodeImageAsync(blog.Image);
