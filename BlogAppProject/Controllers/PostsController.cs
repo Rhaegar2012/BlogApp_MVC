@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BlogAppProject.Data;
 using BlogAppProject.Models;
+using BlogAppProject.Services;
 
 namespace BlogAppProject.Controllers
 {
     public class PostsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ISlugService _slugService;
 
-        public PostsController(ApplicationDbContext context)
+        public PostsController(ApplicationDbContext context, ISlugService slugService)
         {
             _context = context;
+            _slugService = slugService;
         }
 
         // GET: Posts
@@ -58,12 +61,22 @@ namespace BlogAppProject.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BlogId,Title,Abstract,Content,ReadyStatus,ImageData")] Post post)
+        public async Task<IActionResult> Create([Bind("BlogId,Title,Abstract,Content,ReadyStatus,ImageData")] Post post,List<string> tagValues)
         {
             if (ModelState.IsValid)
             {
                 //Stores the created date 
                 post.Created = DateTime.Now;
+                //Create the Slug and determine if it is unique
+                var slug = _slugService.urlfriendly(post.Title);
+                if (!_slugService.IsUnique(slug))
+                {
+                    ModelState.AddModelError("Title", "Title you provided cannot be used " +
+                        "as it  results in a duplicate slug");
+                    ViewData["TagValues"] = string.Join(",", tagValues);
+                    return View(post);
+                }
+                post.Slug = slug;
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
