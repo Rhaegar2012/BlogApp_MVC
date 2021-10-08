@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using BlogAppProject.Data;
 using BlogAppProject.Models;
 using BlogAppProject.Services;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 
 namespace BlogAppProject.Controllers
 {
@@ -15,11 +17,15 @@ namespace BlogAppProject.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly ISlugService _slugService;
+        private readonly IImageService _imageService;
+        private readonly UserManager<BlogUser> _userManager;
 
-        public PostsController(ApplicationDbContext context, ISlugService slugService)
+        public PostsController(ApplicationDbContext context, ISlugService slugService, IImageService imageService, UserManager<BlogUser>userManager)
         {
             _context = context;
             _slugService = slugService;
+            _imageService = imageService;
+            _userManager = userManager;
         }
 
         // GET: Posts
@@ -62,12 +68,17 @@ namespace BlogAppProject.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BlogId,Title,Abstract,Content,ReadyStatus,ImageData")] Post post,List<string> tagValues)
+        public async Task<IActionResult> Create([Bind("BlogId,Title,Abstract,Content,ReadyStatus,Image")] Post post,List<string> tagValues)
         {
             if (ModelState.IsValid)
             {
                 //Stores the created date 
                 post.Created = DateTime.Now;
+                //Store user info 
+                var authorId = _userManager.GetUserId(User);
+                //Use _imageService to store incoming user specified image
+                post.ImageData = await _imageService.EncodeImageAsync(post.Image);
+                post.ContentType = _imageService.ContentType(post.Image);
                 //Create the Slug and determine if it is unique
                 var slug = _slugService.urlfriendly(post.Title);
                 if (!_slugService.IsUnique(slug))
@@ -108,7 +119,7 @@ namespace BlogAppProject.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,Content,ReadyStatus,Image")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,BlogId,Title,Abstract,Content,ReadyStatus")] Post post,IFormFile newImage)
         {
             if (id != post.Id)
             {
@@ -119,8 +130,19 @@ namespace BlogAppProject.Controllers
             {
                 try
                 {
+                    //Access to original post
+                    var originalPost=await _context.Posts.Include(p=>p.Tags).FirstOrDefaultAsync(p=>p.Id==post.Id);
+                    originalPost.Title = post.Title;
+                    originalPost.Abstract = post.Abstract;
+                    originalPost.Content = post.Content;
+                    originalPost.ReadyStatus = post.ReadyStatus;
                     post.Updated = DateTime.Now;
-                    _context.Update(post);
+                    if (newImage != null)
+                    {
+                        post.ImageData = await _imageService.EncodeImageAsync(newImage);
+                        post.ContentType = _imageService.ContentType(newImage);
+                    }
+                   
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
