@@ -10,6 +10,9 @@ namespace BlogAppProject.Models
 {
     public class BlogUser:IdentityUser
     {
+        [Display(Name ="Image")]
+        public byte[] ImageData { get; set; }
+
         [Required]
         [StringLength(50,ErrorMessage ="{0} must be at least {2} and no more than {1} characters long.",MinimumLength =2)]
         [Display(Name ="First Name")]

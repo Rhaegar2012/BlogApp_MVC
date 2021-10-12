@@ -92,6 +92,9 @@ namespace BlogAppProject.Data.Migrations
                     b.Property<byte[]>("Image")
                         .HasColumnType("bytea");
 
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("bytea");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50)

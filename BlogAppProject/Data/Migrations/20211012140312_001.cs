@@ -27,6 +27,7 @@ namespace BlogAppProject.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
+                    ImageData = table.Column<byte[]>(type: "bytea", nullable: true),
                     FirstName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     Image = table.Column<byte[]>(type: "bytea", nullable: true),
