@@ -68,7 +68,7 @@ namespace BlogAppProject.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BlogId,Title,Abstract,Content,ReadyStatus,Image")] Post post,List<string> tagValues)
+        public async Task<IActionResult> Create([Bind("BlogId,Title,Abstract,Content,ReadyStatus,Image")] Post post,List<string> TagValues)
         {
             if (ModelState.IsValid)
             {
@@ -85,12 +85,21 @@ namespace BlogAppProject.Controllers
                 {
                     ModelState.AddModelError("Title", "Title you provided cannot be used " +
                         "as it  results in a duplicate slug");
-                    ViewData["TagValues"] = string.Join(",", tagValues);
+                    ViewData["TagValues"] = string.Join(",", TagValues);
                     return View(post);
                 }
                 post.Slug = slug;
                 _context.Add(post);
                 await _context.SaveChangesAsync();
+                foreach (var Tag in TagValues)
+                {
+                    _context.Add(new Tag()
+                    {
+                        PostId = post.Id,
+                        BlogUserId=authorId,
+                        Text = Tag
+                    });
+                }
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Description", post.BlogId);
