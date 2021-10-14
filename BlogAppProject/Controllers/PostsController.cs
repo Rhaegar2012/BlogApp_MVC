@@ -46,6 +46,7 @@ namespace BlogAppProject.Controllers
             var post = await _context.Posts
                 .Include(p => p.Blog)
                 .Include(p=>p.BlogUser)
+                .Include(p=>p.Tags)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (post == null)
             {
@@ -91,6 +92,7 @@ namespace BlogAppProject.Controllers
                 post.Slug = slug;
                 _context.Add(post);
                 await _context.SaveChangesAsync();
+
                 foreach (var Tag in TagValues)
                 {
                     _context.Add(new Tag()
@@ -100,6 +102,7 @@ namespace BlogAppProject.Controllers
                         Text = Tag
                     });
                 }
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BlogId"] = new SelectList(_context.Blogs, "Id", "Description", post.BlogId);
