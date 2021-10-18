@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BlogAppProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211012140312_001")]
+    [Migration("20211018132135_001")]
     partial class _001
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -217,10 +217,7 @@ namespace BlogAppProject.Data.Migrations
                     b.Property<int>("BlogId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("BlogUserId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("BlogUserId1")
+                    b.Property<string>("BlogUserId")
                         .HasColumnType("text");
 
                     b.Property<string>("Content")
@@ -254,7 +251,7 @@ namespace BlogAppProject.Data.Migrations
 
                     b.HasIndex("BlogId");
 
-                    b.HasIndex("BlogUserId1");
+                    b.HasIndex("BlogUserId");
 
                     b.ToTable("Posts");
                 });
@@ -458,7 +455,7 @@ namespace BlogAppProject.Data.Migrations
 
                     b.HasOne("BlogAppProject.Models.BlogUser", "BlogUser")
                         .WithMany("Posts")
-                        .HasForeignKey("BlogUserId1");
+                        .HasForeignKey("BlogUserId");
 
                     b.Navigation("Blog");
 

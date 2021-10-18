@@ -192,7 +192,7 @@ namespace BlogAppProject.Data.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     BlogId = table.Column<int>(type: "integer", nullable: false),
-                    BlogUserId = table.Column<int>(type: "integer", nullable: false),
+                    BlogUserId = table.Column<string>(type: "text", nullable: true),
                     Title = table.Column<string>(type: "character varying(75)", maxLength: 75, nullable: false),
                     Abstract = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     Content = table.Column<string>(type: "text", nullable: false),
@@ -201,15 +201,14 @@ namespace BlogAppProject.Data.Migrations
                     ReadyStatus = table.Column<int>(type: "integer", nullable: false),
                     Slug = table.Column<string>(type: "text", nullable: true),
                     ImageData = table.Column<byte[]>(type: "bytea", nullable: true),
-                    ContentType = table.Column<string>(type: "text", nullable: true),
-                    BlogUserId1 = table.Column<string>(type: "text", nullable: true)
+                    ContentType = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Posts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Posts_AspNetUsers_BlogUserId1",
-                        column: x => x.BlogUserId1,
+                        name: "FK_Posts_AspNetUsers_BlogUserId",
+                        column: x => x.BlogUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -351,9 +350,9 @@ namespace BlogAppProject.Data.Migrations
                 column: "BlogId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Posts_BlogUserId1",
+                name: "IX_Posts_BlogUserId",
                 table: "Posts",
-                column: "BlogUserId1");
+                column: "BlogUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tags_BlogUserId",

@@ -16,7 +16,7 @@ namespace BlogAppProject.Models
         //Foreign Key
         [Display(Name="Blog Name")]
         public int BlogId { get; set; }
-        public int BlogUserId { get; set; }
+        public string BlogUserId { get; set; }
         [Required]
         [StringLength(75,ErrorMessage ="The {0} must be at least {2} and at most {1} characters long. ", MinimumLength = 2)]
         public string Title { get; set; }

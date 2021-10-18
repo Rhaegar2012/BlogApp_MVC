@@ -1,6 +1,29 @@
 ﻿let index = 0;
 function AddTag() {
     var tagEntry = document.getElementById("TagEntry");
+    //Use search function to help detect an error state 
+    let searchResult = search(tagEntry.value);
+    if (searchResult != null) {
+        //Trigger sweet alert for the empty string for whatever condition
+        //is contained in the search Result var
+        Swal.fire({
+            title: 'Error!',
+            text: 'Do you want to continue',
+            icon: 'error',
+            confirmButtonText:'Cool'
+        })
+    }
+    else {
+        //Create a new select option
+        let newOption = new Option(tagEntry.value, tagEntry.value);
+        document.getElementById("TagList").options[index ==] = newOption;
+    }
+
+
+
+
+
+
     //Create a new select option
     let newOption = new Option(tagEntry.value, tagEntry.value);
     document.getElementById("TagList").options[index++] = newOption;
@@ -44,4 +67,19 @@ if (tagValues != '') {
 function ReplaceTag(tag, index) {
     let newOption = new Option(tag, tag);
     document.getElementById("TagList").options[index] = newOption;
+}
+//The search function will detect either an empty or duplicate Tag
+//Return an error string if an error is detected 
+function search(str) {
+    if (str == '') {
+        return 'Empty tags are not permitted';
+    }
+    var tagsEl = document.getElementById('TagList');
+    if (tagsEl) {
+        let options = tagsEl.options;
+        for (let index = 0; index < options.length; index++) {
+            if (options(index).value == str)
+                return `The tag #${str} was detected as duplicate and not permitted`
+        }
+    }
 }
