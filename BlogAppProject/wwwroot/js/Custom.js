@@ -4,38 +4,38 @@ function AddTag() {
     //Use search function to help detect an error state 
     let searchResult = search(tagEntry.value);
     if (searchResult != null) {
-        //Trigger sweet alert for the empty string for whatever condition
+        //Trigger sweetalert for the empty string for whatever condition
         //is contained in the search Result var
-        Swal.fire({
-            title: 'Error!',
-            text: 'Do you want to continue',
-            icon: 'error',
-            confirmButtonText:'Cool'
-        })
+        swalWithDarkButton.fire({
+            html: `<span class='font-weight-holder'>${searchResult.toUpperCase()}</span>`
+        });
     }
     else {
         //Create a new select option
-        let newOption = new Option(tagEntry.value, tagEntry.value);
-        document.getElementById("TagList").options[index ==] = newOption;
+        let newOption = new Option(tagEntry.value,tagEntry.value);
+        document.getElementById("TagList").options[index++] = newOption;
     }
-
-
-
-
-
-
-    //Create a new select option
-    let newOption = new Option(tagEntry.value, tagEntry.value);
-    document.getElementById("TagList").options[index++] = newOption;
     //Clear out the TagEntry control
     tagEntry.value = "";
     return true;
 }
+
+
+
 function DeleteTag() { 
     let tagCount = 1;
-    
+    let tagList = document.getElementById("TagList");
+    if (!tagList) {
+        return false;
+    }
+    if (tagList.selectedIndex == -1) {
+        swalWithDarkButton.fire({
+            html: `<span class='font-weight-bolder'>CHOOSE A TAG BEFORE DELETING </span>`
+        });
+        return true;
+    }
     while (tagCount > 0) {
-        let tagList = document.getElementById("TagList");
+      
         let selectedIndex = tagList.selectedIndex;
         if (selectedIndex >= 0) {
             tagList.options[selectedIndex] = null;
@@ -78,8 +78,17 @@ function search(str) {
     if (tagsEl) {
         let options = tagsEl.options;
         for (let index = 0; index < options.length; index++) {
-            if (options(index).value == str)
+            if (options[index].value == str)
                 return `The tag #${str} was detected as duplicate and not permitted`
         }
     }
 }
+
+const swalWithDarkButton = Swal.mixin({
+    customClass: {
+        confirmButton: 'btn btn-danger btn-sm btn-block btn-outline-dark'
+    },
+    imageUrl: '/img/oops.jpg',
+    timer: 3000,
+    buttonsStyling: false
+});
