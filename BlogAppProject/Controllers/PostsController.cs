@@ -82,13 +82,27 @@ namespace BlogAppProject.Controllers
                 post.ContentType = _imageService.ContentType(post.Image);
                 //Create the Slug and determine if it is unique
                 var slug = _slugService.urlfriendly(post.Title);
+                //Create a variable to store if an error has occurred
+
+                var validationError = false;
+                if (string.IsNullOrEmpty(slug))
+                {
+                    validationError = true;
+                    ModelState.AddModelError("Title", "The title you provided cannot be used as it results in an empty slug");
+                }
+                //Detect incoming duplicate slugs 
                 if (!_slugService.IsUnique(slug))
                 {
-                    ModelState.AddModelError("Title", "Title you provided cannot be used " +
-                        "as it  results in a duplicate slug");
-                    ViewData["TagValues"] = string.Join(",", TagValues);
+                    validationError = true;
+                    ModelState.AddModelError("Title", "Title you provided cannot be used as it  results in a duplicate slug");
+             
+                }
+                if (validationError)
+                {
+                    ViewData["TagValues"] = string.Join(',', TagValues);
                     return View(post);
                 }
+
                 post.Slug = slug;
                 _context.Add(post);
                 await _context.SaveChangesAsync();
@@ -150,6 +164,22 @@ namespace BlogAppProject.Controllers
                     originalPost.Content = post.Content;
                     originalPost.ReadyStatus = post.ReadyStatus;
                     post.Updated = DateTime.Now;
+
+                    var newSlug = _slugService.urlfriendly(post.Title);
+                    if (newSlug != originalPost.Slug)
+                    {
+                        if (_slugService.IsUnique(newSlug))
+                        {
+                            originalPost.Title = post.Title;
+                            originalPost.Slug = newSlug;
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("Title", " This title cannot be used as it results in the same slug");
+                            ViewData["TagValues"] = string.Join(",", post.Tags.Select(t => t.Text));
+                            return View(post);
+                        }
+                    }
                     if (newImage != null)
                     {
                         post.ImageData = await _imageService.EncodeImageAsync(newImage);
