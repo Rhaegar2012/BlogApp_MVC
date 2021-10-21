@@ -9,6 +9,7 @@ using BlogAppProject.Models;
 using BlogAppProject.ViewModels;
 using BlogAppProject.Services;
 using BlogAppProject.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlogAppProject.Controllers
 {
@@ -25,9 +26,25 @@ namespace BlogAppProject.Controllers
             _emailSender = emailSender;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var blogs =  await _context.Blogs
+                .Include(b=>b.BlogUser)
+                .ToListAsync();
+
+            return View(blogs);
+        }
+
+        //Blog post index 
+        //BlogPostIndex
+        public async Task<IActionResult> BlogPostIndex(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var posts = _context.Posts.Where(p => p.BlogId == id).ToList();
+            return View("Index", posts);
         }
         public IActionResult About()
         {

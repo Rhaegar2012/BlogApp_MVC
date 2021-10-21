@@ -35,19 +35,22 @@ namespace BlogAppProject.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+     
+
         // GET: Posts/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string slug)
         {
-            if (id == null)
+            if (string.IsNullOrEmpty(slug))
             {
                 return NotFound();
             }
 
             var post = await _context.Posts
                 .Include(p => p.Blog)
+                .Include(post=>post.Blog.Posts)
                 .Include(p=>p.BlogUser)
                 .Include(p=>p.Tags)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Slug == slug);
             if (post == null)
             {
                 return NotFound();
@@ -91,7 +94,7 @@ namespace BlogAppProject.Controllers
                     ModelState.AddModelError("Title", "The title you provided cannot be used as it results in an empty slug");
                 }
                 //Detect incoming duplicate slugs 
-                if (!_slugService.IsUnique(slug))
+                else if (!_slugService.IsUnique(slug))
                 {
                     validationError = true;
                     ModelState.AddModelError("Title", "Title you provided cannot be used as it  results in a duplicate slug");
