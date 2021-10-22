@@ -34,8 +34,18 @@ namespace BlogAppProject.Controllers
             var applicationDbContext = _context.Posts.Include(p => p.Blog);
             return View(await applicationDbContext.ToListAsync());
         }
+        //Blog post index 
+        //BlogPostIndex
+        public async Task<IActionResult> BlogPostIndex(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var posts = _context.Posts.Where(p => p.BlogId == id).ToList();
+            return View("Index", posts);
+        }
 
-     
 
         // GET: Posts/Details/5
         public async Task<IActionResult> Details(string slug)

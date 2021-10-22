@@ -10,6 +10,7 @@ using BlogAppProject.ViewModels;
 using BlogAppProject.Services;
 using BlogAppProject.Data;
 using Microsoft.EntityFrameworkCore;
+using X.PagedList;
 
 namespace BlogAppProject.Controllers
 {
@@ -26,26 +27,24 @@ namespace BlogAppProject.Controllers
             _emailSender = emailSender;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
-            var blogs =  await _context.Blogs
+            //var pageNumber = page ?? 1;
+            //var pageSize = 5;
+            //var blogs = _context.Blogs.Where(
+            //    b => b.Posts.Any(p => p.ReadyStatus == Enums.ReadyStatus.ProductionReady))
+            //    .OrderByDescending(b => b.Created)
+            //    .ToPagedListAsync(pageNumber, pageSize);
+            var pageNumber = page ?? 1;
+            var pageSize = 5;
+            var blogs = _context.Blogs
                 .Include(b=>b.BlogUser)
-                .ToListAsync();
-
-            return View(blogs);
+                .OrderByDescending(b => b.Created)
+                .ToPagedListAsync(pageNumber, pageSize);
+            return View(await blogs);
         }
 
-        //Blog post index 
-        //BlogPostIndex
-        public async Task<IActionResult> BlogPostIndex(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var posts = _context.Posts.Where(p => p.BlogId == id).ToList();
-            return View("Index", posts);
-        }
+
         public IActionResult About()
         {
             return View();
