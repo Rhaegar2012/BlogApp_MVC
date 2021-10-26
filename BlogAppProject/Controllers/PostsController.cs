@@ -21,13 +21,16 @@ namespace BlogAppProject.Controllers
         private readonly ISlugService _slugService;
         private readonly IImageService _imageService;
         private readonly UserManager<BlogUser> _userManager;
+        private readonly BlogSearchService _blogSearchService;
 
-        public PostsController(ApplicationDbContext context, ISlugService slugService, IImageService imageService, UserManager<BlogUser>userManager)
+        public PostsController(ApplicationDbContext context, ISlugService slugService, IImageService imageService, UserManager<BlogUser>userManager,
+            BlogSearchService blogSearchService)
         {
             _context = context;
             _slugService = slugService;
             _imageService = imageService;
             _userManager = userManager;
+            _blogSearchService = blogSearchService;
         }
 
         public async Task<IActionResult> SearchIndex(int? page,string searchTerm)
@@ -35,22 +38,7 @@ namespace BlogAppProject.Controllers
             ViewData["SearchTerm"] = searchTerm;
             var pageNumber = page ?? 1;
             var pageSize = 5;
-            var posts = _context.Posts.Where(
-                p => p.ReadyStatus == ReadyStatus.ProductionReady
-                ).AsQueryable();
-            if (searchTerm != null)
-            {
-                posts = posts.Where(
-                    p=> p.Title.Contains(searchTerm)||
-                    p.Abstract.Contains(searchTerm)||
-                    p.Content.Contains(searchTerm)||
-                    p.Comments.Any(c=> c.Body.Contains(searchTerm)||
-                                       c.ModeratedBody.Contains(searchTerm)||
-                                       c.BlogUser.FirstName.Contains(searchTerm)||
-                                       c.BlogUser.LastName.Contains(searchTerm)||
-                                       c.BlogUser.Email.Contains(searchTerm)));
-            }
-            posts = posts.OrderByDescending(p => p.Created);
+            var posts = _blogSearchService.Search(searchTerm);
             return View(await posts.ToPagedListAsync(pageNumber, pageSize));
         }
 

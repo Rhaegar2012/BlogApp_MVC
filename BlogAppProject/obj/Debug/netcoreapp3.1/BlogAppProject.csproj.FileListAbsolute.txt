@@ -514,3 +514,4 @@ C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\BlogAppProject.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\BlogAppProject.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Views\Posts\BlogPostIndex.cshtml.g.cs
+C:\Users\joseb\Documents\Code\BlogApp_MVC\BlogAppProject\obj\Debug\netcoreapp3.1\Razor\Views\Posts\SearchIndex.cshtml.g.cs

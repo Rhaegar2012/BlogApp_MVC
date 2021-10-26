@@ -37,6 +37,11 @@
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" asp-controller="Home" asp-action="About">About</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" asp-controller="Blogs" asp-action="Create">Create</a></li>
+                    }
+
 
                 </ul>
                 <!--Links to render partial views-->
@@ -52,11 +57,11 @@
                     <div class="site-heading">
                         <h1>Clean Blog</h1>
                         <span class="subheading">A Blog Theme by Start Bootstrap</span>
-                        <form asp-action="SearchIndex" asp-contoller="Post">
+                        <form asp-controller="Posts" asp-action="SearchIndex">
                             <div class="input-group mt-5">
                                 <input type="text" name="SearchTerm" class="form-control" placeholder="Search Term" />
                                 <div class="input-group-append">
-                                    <button class="btn btn-warning note-btn-block btn-sm" type="submit">Search</button>
+                                    <button class="btn btn-warning btn-block" type="submit">Search</button>
                                 </div>
                             </div>
                         </form>
