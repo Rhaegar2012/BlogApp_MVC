@@ -71,7 +71,7 @@ namespace BlogAppProject.Controllers
                 comment.Created = DateTime.Now;
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index)); 
+                return RedirectToAction("Index", "Posts"); 
             }
             return View(comment);
         }
