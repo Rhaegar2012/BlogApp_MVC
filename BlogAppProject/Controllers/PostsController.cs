@@ -83,6 +83,8 @@ namespace BlogAppProject.Controllers
                 .Include(post=>post.Blog.Posts)
                 .Include(p=>p.BlogUser)
                 .Include(p=>p.Tags)
+                .Include(p=>p.Comments)
+                .ThenInclude(c=>c.BlogUser)
                 .FirstOrDefaultAsync(m => m.Slug == slug);
             if (post == null)
             {
