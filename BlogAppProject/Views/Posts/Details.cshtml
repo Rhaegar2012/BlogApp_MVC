@@ -64,7 +64,24 @@
         <img class="mr-2 mt-3 rounded circle" style="width:60px;" src="@imageService.DecodeImage(comment.BlogUser.ImageData,comment.BlogUser.ContentType)"/>
         <div class="media-body">
             <h4>@comment.BlogUser.FullName</h4>
-            <small><i>Posted on @comment.Created.ToString("MMM,dd,yyyy")</i></small>
+            <small>
+                <i>
+                    @if(comment.Moderated is not null)
+                    {
+                        <span class="font-weight-bolder">
+                            <span>
+                                Moderated <span class="text-danger font-italic">@comment.ModerationType.ToString().ToLower() </span>
+                            </span>
+                          @comment.Moderated?.ToString("MMM dd, yyyy")
+                        </span>
+
+                    }
+                    else
+                    {
+                        <span class="small font-italic"> Posted: @comment.Created.ToString("MMM dd,yyyy")</span>
+                    }
+                </i>
+            </small>
             <p>@comment.Body</p>
             @if(comment.Moderated is null && comment.Deleted is null && comment.BlogUserId == userManager.GetUserId(User))
             {

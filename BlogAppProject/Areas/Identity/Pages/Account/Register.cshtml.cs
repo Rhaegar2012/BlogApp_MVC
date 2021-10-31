@@ -97,7 +97,8 @@ namespace BlogAppProject.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new BlogUser {
-                    ContentType = Input.ImageFile is null ? Path.GetExtension(_configuration["DefaultUserImage"]) :
+                    ContentType = Input.ImageFile is null ? 
+                                  Path.GetExtension(_configuration["DefaultUserImage"]) :
                                 _imageService.ContentType(Input.ImageFile),
                     FirstName =Input.FirstName, 
                     LastName=Input.LastName, 
