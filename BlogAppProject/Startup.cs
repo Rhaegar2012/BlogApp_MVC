@@ -30,8 +30,10 @@ namespace BlogAppProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
+            //Connection to database
             options.UseNpgsql(
                  Configuration.GetConnectionString("DefaultConnection")));
+            //Identity services injected
             services.AddIdentity<BlogUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddDefaultUI()
                 .AddDefaultTokenProviders()
