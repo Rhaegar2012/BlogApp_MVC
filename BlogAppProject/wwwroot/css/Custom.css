@@ -1,8 +1,44 @@
-﻿button.btn-sm, a.btn-sm{
-    line-height: .5;
+﻿/*NAVIGATION*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.tooltip.show{
+    opacity: 1;
+}
+/*TAGS*/
+#TagList{
+    width: 100%;
+    font-weight: 600;
+}
+
+.tagView{
+    max-height: 300px;
+    overflow-y:scroll;
+}
+
+/*WEBKIT SCROLLBAR STYLES*/
+::-webkit-scrollbar{
+    width: 10px;
+}
+::-webkit-scrollbar-track{
+    box-shadow: inset 0 0 5px #ff993b;
     border-radius: 10px;
 }
 
-option{
-    font-weight: bolder;
+::-webkit-scrollbar-thumb{
+    background: #212121;
+    border-radius: 10px;
 }
