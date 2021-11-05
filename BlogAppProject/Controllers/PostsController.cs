@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using BlogAppProject.Enums;
 using X.PagedList;
+using BlogAppProject.ViewModels;
 
 namespace BlogAppProject.Controllers
 {
@@ -90,8 +91,18 @@ namespace BlogAppProject.Controllers
             {
                 return NotFound();
             }
+            var dataVM = new PostDetailViewModel()
+            {
+                Post = post,
+                Tags = _context.Tags
+                      .Select(t => t.Text.ToLower())
+                      .Distinct().ToList()
 
-            return View(post);
+            };
+            ViewData["HeaderImage"] = _imageService.DecodeImage(post.ImageData, post.ContentType);
+            ViewData["MainText"] = post.Title;
+            ViewData["SubText"] = post.Abstract;
+            return View(dataVM);
         }
 
         // GET: Posts/Create
