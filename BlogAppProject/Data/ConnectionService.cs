@@ -18,7 +18,7 @@ namespace BlogAppProject.Data
         private static string BuildConnectionString(string databaseUrl)
         {
             var databaseUri = new Uri(databaseUrl);
-            var userInfo = databaseUri.UserInfo.Split('.');
+            var userInfo = databaseUri.UserInfo.Split(':');
             return new NpgsqlConnectionStringBuilder()
             {
                 Host = databaseUri.Host,
