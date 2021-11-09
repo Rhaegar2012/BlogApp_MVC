@@ -32,7 +32,7 @@ namespace BlogAppProject
             services.AddDbContext<ApplicationDbContext>(options =>
             //Connection to database
             options.UseNpgsql(
-                 Configuration.GetConnectionString("DefaultConnection")));
+                 ConnectionService.GetConnectionString(Configuration)));
             //Identity services injected
             services.AddIdentity<BlogUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddDefaultUI()
